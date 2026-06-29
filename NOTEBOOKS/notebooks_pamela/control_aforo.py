@@ -73,9 +73,52 @@ Otros casos para probar:
 
 
 # Desarrolle su solución a partir de esta línea.
-cantidad_maxima = 700
+CAPACIDAD_MAXIMA = 700
+grupos_aceptados = []
+grupos_rechazados = []
 ocupacion_actual = 0
+entrada = ""
 
-grupo_aceptados = []
-grupo_rechazados = []
+print("CONTROL DE INFRESO - ANFITEATRO DEL CENAC")
+print("capacidad maxima: 700 personas\n")
 
+cantidad_aceptados = 0
+cantidad_rechazados = 0
+
+
+
+while not entrada == "fin":
+        entrada = input("Escriba 'fin' para terminar. o Ingrese la cantidad del grupo: ").strip().lower()
+        try:
+                cantidad_grupo = int(entrada)
+                if cantidad_grupo <= 0:
+                        print("Entrada invalida, escriba un numero positivo o 'fin'")
+                elif ocupacion_actual + cantidad_grupo <= CAPACIDAD_MAXIMA:                    
+                    grupos_aceptados.append(cantidad_grupo)
+                    espacios_disponibles = CAPACIDAD_MAXIMA - ocupacion_actual
+                    print(f"Grupo aceptado: ingresan {cantidad_grupo} personas")
+                    print(f"Ocupacion actual: {ocupacion_actual}")
+                    print(f"Espacios disponibles: {espacios_disponibles}")
+                else:
+                    grupos_rechazados.append(cantidad_grupo)
+                    print(f"Grupo rechazado: no hay espacio para {cantidad_grupo} personas")#aforo completo
+                espacios_disponibles = CAPACIDAD_MAXIMA - ocupacion_actual 
+                print(f"ocupacion actual: {ocupacion_actual}")
+                print(f"espacios disponibles: {espacios_disponibles}")
+        except ValueError:
+            if entrada == "fin":
+                print("cerrando sistema ..")
+        else:
+            print("Entrada invalida: escriba un numero positivo o 'fin'.")
+            
+print(grupos_aceptados)
+print(grupos_rechazados)
+
+
+print("\nREPORTE FINAL")
+print(f"Grupos aceptados: {cantidad_aceptados}")
+print(f"Grupos rechazados: {cantidad_rechazados}")
+print(f"Personas admitidas: {ocupacion_actual}")
+print(f"Capacidad máxima: {CAPACIDAD_MAXIMA}")
+print(f"Espacios disponibles: {CAPACIDAD_MAXIMA - ocupacion_actual}")
+print(f"Porcentaje de ocupación: {(ocupacion_actual / CAPACIDAD_MAXIMA) * 100:.2f}%")
