@@ -35,6 +35,7 @@ def calcular_clasificacion(total, meta):
 mejor_sede = ""
 mayor_total = 0
 reporte = []
+provincias = set()
 
 for sede in sedes:
     ventas = sede["ventas"]
@@ -47,9 +48,7 @@ for sede in sedes:
     promedio_sede = calcular_promedio(ventas)
     porcentaje_sede = calcular_porcentaje(total_sede,meta, True)
     estado = calcular_clasificacion(total_sede, meta)
-
-provincia.add(provincia)
-
+    provincias.add(provincia)
 if total_sede > mayor_total:
         mayor_total = total_sede
         mejor_sede = nombre
@@ -70,7 +69,7 @@ print(f"Provincia: {provincia}")
 print(f"Tipo: {tipo}")
 print(f"Total semanal: {total_sede:,}")
 print(f"Promedio diario: {promedio_sede:,.0f}")
-print(f"Cumplimiento: {porcentaje_sede:.2f}%")
+print(f"Cumplimiento: {porcentaje_sede:}")
 print(f"Estado: {estado}")
 print("-" * 35)
 
