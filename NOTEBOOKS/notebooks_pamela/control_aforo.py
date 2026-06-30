@@ -86,7 +86,6 @@ cantidad_aceptados = 0
 cantidad_rechazados = 0
 
 
-
 while not entrada == "fin":
         entrada = input("Escriba 'fin' para terminar. o Ingrese la cantidad del grupo: ").strip().lower()
         try:
