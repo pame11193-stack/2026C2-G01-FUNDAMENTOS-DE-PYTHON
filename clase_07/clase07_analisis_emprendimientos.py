@@ -19,28 +19,70 @@ def calcular_porcentaje(total,meta, formato = False):
     return porcentaje
 def calcular_clasificacion(total, meta):
     porcentaje = calcular_porcentaje(total, meta)
-    if porcentaje_sede >= 100:
+    if porcentaje >= 100:
         mensaje_sede = "Meta alcanzada."
-    elif porcentaje_sede >= 80:
+    elif porcentaje >= 80:
         mensaje_sede = "Meta casi alcanzada, prestar atencion."
     else:
         mensaje_sede = "Meta no alcanzada, requiere atencion."
     return mensaje_sede
-    
-print("cantidad de sedes:",len (sedes))
+
+#print("cantidad de sedes:",len (sedes))
 #print("tipo de variable sedes:",type (sedes))
 #print("tipo de variable sedes[0]:",type (sedes))
 #print("Datos por sede:",sedes[0].keys)
 #print("Primera sede:", sedes[0]['nombre'])
+mejor_sede = ""
+mayor_total = 0
+reporte = []
+
 for sede in sedes:
-    sede_demo = sedes[0]
-    ventas = sede_demo["ventas"]
-    meta = sede_demo["meta"]
+    ventas = sede["ventas"]
+    meta = sede["meta"]
+    nombre = sede["nombre"]
+    provincia = sede["provincia"]
+    tipo = sede ["tipo"]
 
     total_sede = calcular_total(ventas)
     promedio_sede = calcular_promedio(ventas)
     porcentaje_sede = calcular_porcentaje(total_sede,meta, True)
     estado = calcular_clasificacion(total_sede, meta)
 
-    print(porcentaje_sede)
+provincia.add(provincia)
 
+if total_sede > mayor_total:
+        mayor_total = total_sede
+        mejor_sede = nombre
+
+reporte.append({
+    "nombre": nombre,
+    "provincia": provincia,
+    "tipo": tipo,
+    
+    "total": total_sede,
+    "promedio": promedio_sede,
+    "porcentaje": porcentaje_sede,
+    "estado": estado
+    })
+
+print(f"Sede: {nombre}")
+print(f"Provincia: {provincia}")
+print(f"Tipo: {tipo}")
+print(f"Total semanal: {total_sede:,}")
+print(f"Promedio diario: {promedio_sede:,.0f}")
+print(f"Cumplimiento: {porcentaje_sede:.2f}%")
+print(f"Estado: {estado}")
+print("-" * 35)
+
+print("Cantidad de sedes:", len(sedes))
+print()
+print("RESUMEN FINAL")
+print("Provincias analizadas:", sorted(provincias))
+print("Venta más alta:", f"{mayor_total:,}")
+print("Sede con más ingresos:", mejor_sede)
+    
+
+
+#print(imprimir_reporte(reporte))
+#mas ingresos
+#provincias
