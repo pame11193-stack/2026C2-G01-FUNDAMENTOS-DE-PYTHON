@@ -74,11 +74,16 @@ print(f"Estado: {estado}")
 print("-" * 35)
 
 print("Cantidad de sedes:", len(sedes))
-print()
+print("----------------------------")
 print("RESUMEN FINAL")
+print("----------------------------")
+
 print("Provincias analizadas:", sorted(provincias))
 print("Venta más alta:", f"{mayor_total:,}")
 print("Sede con más ingresos:", mejor_sede)
+
+print("----------------------------")
+
     
 
 
